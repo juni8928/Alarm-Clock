@@ -6,15 +6,15 @@ on:
       - main
 
 jobs:
-  test:
+  docker-build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Show project files
-        run: ls -la
+      - name: Build frontend image
+        run: docker build -t alarm_clock_frontend:latest ./frontend
 
-      - name: CI test
-        run: echo "CI pipeline is working!"
+      - name: Build backend image
+        run: docker build -t alarm_clock_backend:latest ./backend
